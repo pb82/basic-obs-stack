@@ -153,7 +153,6 @@ kind: Secret
 metadata:
   name: alertmanager-alertmanager
   namespace: monitoring
-  type: Opaque
 ---
 apiVersion: v1
 kind: Service
@@ -186,9 +185,6 @@ spec:
         tlsConfig:
           caFile: /var/run/secrets/kubernetes.io/serviceaccount/service-ca.crt
           serverName: "alertmanager-service.monitoring.svc"
-secrets:
-  - prometheus-k8s-tls
-  - prometheus-k8s-proxy
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: Alertmanager
@@ -197,6 +193,3 @@ metadata:
   namespace: monitoring
 spec:
   listenLocal: true
-secrets:
-  - alertmanager-k8s-tls
-  - alertmanager-k8s-proxy
